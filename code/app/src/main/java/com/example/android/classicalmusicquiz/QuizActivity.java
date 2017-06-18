@@ -170,7 +170,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         mMediaSession.setActive(true);
     }
 
-    // TODO (1): Create a method that shows a MediaStyle notification with two actions (play/pause, skip to previous). Clicking on the notification should launch this activity. It should take one argument that defines the state of MediaSession.
+    // Create a method that shows a MediaStyle notification with two actions (play/pause, skip to previous). Clicking on the notification should launch this activity. It should take one argument that defines the state of MediaSession.
     /**
      * Shows Media Style notification, with an action that depends on the current MediaSession
      * PlaybackState.
@@ -400,7 +400,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                     mExoPlayer.getCurrentPosition(), 1f);
         }
         mMediaSession.setPlaybackState(mStateBuilder.build());
-        // TODO (2): Call the method to show the notification, passing in the PlayBackStateCompat object.
+        //  Call the method to show the notification, passing in the PlayBackStateCompat object.
         showNotification(mStateBuilder.build());
     }
 
@@ -438,4 +438,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             mExoPlayer.seekTo(0);
         }
     }
+    // TODO (1): Create a static inner class that extends Broadcast Receiver and implement the onReceive() method.
+    //TODO (2): Call MediaButtonReceiver.handleIntent and pass in the incoming intent as well as the MediaSession object to forwa
 }
