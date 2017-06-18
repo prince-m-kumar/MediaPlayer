@@ -45,6 +45,8 @@ import com.google.android.exoplayer2.util.Util;
 
 import java.util.ArrayList;
 
+// TODO (1): Have this Activity implement ExoPlayer.EventListener and add the required methods.
+
 
 public class QuizActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -69,7 +71,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         //  Replace the ImageView with the SimpleExoPlayerView, and remove the method calls on the composerView.
        // ImageView composerView = (ImageView) findViewById(R.id.composerView);
         mPlayerView = (SimpleExoPlayerView) findViewById(R.id.playerView);
-        // TODO (1): Create a layout file called exo_playback_control_view to override the playback control layout.
+        //  Create a layout file called exo_playback_control_view to override the playback control layout.
         boolean isNewGame = !getIntent().hasExtra(REMAINING_SONGS_KEY);
 
         // If it's a new game, set the current score to 0 and load all samples.
@@ -137,6 +139,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             LoadControl loadControl = new DefaultLoadControl();
             mExoPlayer = ExoPlayerFactory.newSimpleInstance(this, trackSelector, loadControl);
             mPlayerView.setPlayer(mExoPlayer);
+            // TODO (2): Set the ExoPlayer.EventListener to this activity
             // Prepare the MediaSource.
             String userAgent = Util.getUserAgent(this, "ClassicalMusicQuiz");
             MediaSource mediaSource = new ExtractorMediaSource(mediaUri, new DefaultDataSourceFactory(
@@ -268,4 +271,5 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         mExoPlayer = null;
     }
 
+    // TODO (3): Add conditional logging statements to the onPlayerStateChanged() method that log when ExoPlayer is playing or paused.
 }
