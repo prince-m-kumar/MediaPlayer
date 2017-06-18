@@ -118,7 +118,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         // Initialize the buttons with the composers names.
         mButtons = initializeButtons(mQuestionSampleIDs);
 
-        // TODO (1): Create a method to initialize the MediaSession. It should create the MediaSessionCompat object, set the flags for external clients, set the available actions you want to support, and start the session.
+        //  Create a method to initialize the MediaSession. It should create the MediaSessionCompat object, set the flags for external clients, set the available actions you want to support, and start the session.
         initializeMediaSession();
 
         //  Create a Sample object using the Sample.getSampleByID() method and passing in mAnswerSampleID;
@@ -164,6 +164,8 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         // Start the Media Session since the activity is active.
         mMediaSession.setActive(true);
     }
+
+    // TODO (1): Create a method that shows a MediaStyle notification with two actions (play/pause, skip to previous). Clicking on the notification should launch this activity. It should take one argument that defines the state of MediaSession.
 
 
     /**
@@ -306,7 +308,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
         super.onDestroy();
         releasePlayer();
-        // TODO (4): When the activity is destroyed, set the MediaSession to inactive.
+        // When the activity is destroyed, set the MediaSession to inactive.
         mMediaSession.setActive(false);
     }
     /**
@@ -336,17 +338,18 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
         if((playbackState == ExoPlayer.STATE_READY) && playWhenReady){
-            // TODO (3): When ExoPlayer is playing, update the PlayBackState.
+            //  When ExoPlayer is playing, update the PlayBackState.
             mStateBuilder.setState(PlaybackStateCompat.STATE_PLAYING,
                     mExoPlayer.getCurrentPosition(), 1f);
             Log.d(TAG, "onPlayerStateChanged: PLAYING");
         } else if((playbackState == ExoPlayer.STATE_READY)) {
-            // TODO (3): When ExoPlayer is paused, update the PlayBackState.
+            //  When ExoPlayer is paused, update the PlayBackState.
             Log.d(TAG, "onPlayerStateChanged: PAUSED");
             mStateBuilder.setState(PlaybackStateCompat.STATE_PAUSED,
                     mExoPlayer.getCurrentPosition(), 1f);
         }
         mMediaSession.setPlaybackState(mStateBuilder.build());
+        // TODO (2): Call the method to show the notification, passing in the PlayBackStateCompat object.
     }
 
     @Override
@@ -364,7 +367,8 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * Media Session Callbacks, where all external clients control the player.
      */
-    // TODO (2): Create an inner class that extends MediaSessionCompat.Callbacks, and override the onPlay(), onPause(), and onSkipToPrevious() callbacks. Pass an instance of this class into the MediaSession.setCallback() method in the method you created in TODO 1.
+    //  Create an inner class that extends MediaSessionCompat.Callbacks, and override the onPlay(), onPause(), and onSkipToPrevious() callbacks. Pass an instance of this class into the MediaSession.setCallback() method in the method you created in
+    //
 
     private class MySessionCallback extends MediaSessionCompat.Callback {
         @Override
